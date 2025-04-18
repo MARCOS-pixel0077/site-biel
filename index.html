@@ -62,22 +62,74 @@
     <script>
         // Gerar estrelas fixas
         const starsContainer = document.getElementById('stars-container');
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 200; i++) { // Aumentado para 200 estrelas
             const star = document.createElement('div');
             star.classList.add('stars');
             star.style.top = Math.random() * 100 + 'vh';
             star.style.left = Math.random() * 100 + 'vw';
+            star.style.animationDelay = Math.random() * 3 + 's'; // Delay aleatório para cintilação
             starsContainer.appendChild(star);
         }
 
         // Gerar estrelas cadentes
         const shootingStarsContainer = document.getElementById('shooting-stars-container');
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 15; i++) { // Aumentado para 15 estrelas cadentes
             const shootingStar = document.createElement('div');
             shootingStar.classList.add('shooting-star');
-            shootingStar.style.top = Math.random() * 100 + 'vh';
+            shootingStar.style.top = Math.random() * 50 + 'vh'; // Limitado à metade superior da tela
             shootingStar.style.left = Math.random() * 100 + 'vw';
+            shootingStar.style.animationDelay = Math.random() * 5 + 's'; // Delay aleatório
             shootingStarsContainer.appendChild(shootingStar);
+        }
+
+        // Gerar discos voadores
+        const ufoContainer = document.createElement('div');
+        ufoContainer.id = 'ufo-container';
+        document.body.appendChild(ufoContainer);
+
+        function createUFO(direction) {
+            const ufo = document.createElement('div');
+            ufo.classList.add('ufo');
+            ufo.classList.add(direction);
+            
+            // Adiciona as luzes
+            const lights = document.createElement('div');
+            lights.classList.add('lights');
+            ufo.appendChild(lights);
+            
+            // Posição inicial baseada na direção
+            const startY = Math.random() * window.innerHeight;
+            if (direction === 'left-to-right') {
+                ufo.style.left = '0';
+            } else {
+                ufo.style.left = window.innerWidth + 'px';
+            }
+            ufo.style.top = startY + 'px';
+            
+            // Delay aleatório para a animação
+            ufo.style.animationDelay = Math.random() * 5 + 's';
+            
+            // Duração aleatória da animação
+            ufo.style.animationDuration = (8 + Math.random() * 4) + 's';
+            
+            ufoContainer.appendChild(ufo);
+            
+            // Remove o UFO após a animação terminar
+            ufo.addEventListener('animationend', () => {
+                ufo.remove();
+                // Cria um novo UFO na mesma direção
+                setTimeout(() => createUFO(direction), Math.random() * 2000);
+            });
+        }
+
+        // Cria 3 UFOs da esquerda para a direita
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => createUFO('left-to-right'), i * 1000);
+        }
+
+        // Cria 2 UFOs da direita para a esquerda
+        for (let i = 0; i < 2; i++) {
+            setTimeout(() => createUFO('right-to-left'), i * 1000);
         }
     </script>
 
