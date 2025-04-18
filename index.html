@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcos Gabriel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Marcos Gabriel</h1>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#abilidades">Habilidades</a></li>
+            <li><a href="#experiencias">Sobre Mim</a></li>
+            <li><a href="#contact">Contato</a></li>
+            <li><a href="#projetos">Projetos</a></li> <!-- Mantém apenas este -->
+        </ul>
+    </nav>
+
+    <div class="profile-picture">
+        <img src="perfil.jpg" alt="Minha Foto">
+    </div>
+
+    <!-- Contêiner para estrelas fixas -->
+    <div id="stars-container"></div>
+
+    <!-- Contêiner para estrelas cadentes -->
+    <div id="shooting-stars-container"></div>
+
+    <!-- Quadrado flutuante -->
+    <div id="floating-box" class="hidden">
+        <p id="floating-text">Texto do quadrado flutuante</p>
+    </div>
+
+    <section id="sobre">
+        <div class="about-container">
+            <p>
+                Tenho 18 anos, conclui o ensino médio e estou prestes a iniciar minha faculdade de Engenharia de Software, um grande passo na jornada que venho construindo.
+            </p>
+            <p>
+                A tecnologia sempre esteve presente no meu dia a dia, seja explorando novas ferramentas, estudando programação ou imaginando como posso contribuir para um futuro mais inovador. Vejo nesse universo uma infinidade de possibilidades, e me motiva a ideia de criar soluções que possam facilitar a vida das pessoas e impulsionar mudanças.
+            </p>
+            <p>
+                Com dedicação e aprendizado constante, quero aprimorar minhas habilidades e me tornar um profissional capaz de desenvolver projetos incríveis. Sei que o caminho exige esforço, mas estou pronto para aprender, crescer e fazer parte da transformação tecnológica que está acontecendo no mundo. 🚀
+            </p>
+        </div>
+    </section>
+
+    <section id="ferramentas">
+        <h2>💻 Ferramentas que uso</h2>
+        <div class="ferramentas-icons">
+            <i class="fab fa-python" title="Python"></i>
+            <i class="fab fa-html5" title="HTML"></i>
+            <i class="fab fa-css3-alt" title="CSS"></i>
+            <i class="fab fa-github" title="GitHub"></i>
+            <i class="fas fa-code" title="Visual Studio Code"></i>
+            <i class="fas fa-file-excel" title="Excel"></i>
+        </div>
+    </section>
+
+    <script>
+        // Gerar estrelas fixas
+        const starsContainer = document.getElementById('stars-container');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.classList.add('stars');
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.left = Math.random() * 100 + 'vw';
+            starsContainer.appendChild(star);
+        }
+
+        // Gerar estrelas cadentes
+        const shootingStarsContainer = document.getElementById('shooting-stars-container');
+        for (let i = 0; i < 10; i++) {
+            const shootingStar = document.createElement('div');
+            shootingStar.classList.add('shooting-star');
+            shootingStar.style.top = Math.random() * 100 + 'vh';
+            shootingStar.style.left = Math.random() * 100 + 'vw';
+            shootingStarsContainer.appendChild(shootingStar);
+        }
+    </script>
+
+    <script>
+        // Seleciona os links da navbar, o quadrado flutuante e o texto
+        const navbarLinks = document.querySelectorAll('.navbar a');
+        const floatingBox = document.getElementById('floating-box');
+        const floatingText = document.getElementById('floating-text');
+
+        // Textos personalizados para cada item da navbar
+        const texts = {
+            abilidades: "Tenho conhecimentos em Excel básico, programação em Python, e desenvolvimento de sites simples com HTML e CSS. Gosto de aprender e sempre busco melhorar minhas habilidades. Também sou uma pessoa proativa, com bom raciocínio lógico, e estou disposto a enfrentar desafios com dedicação e esforço!",
+            
+            experiencias: "Já trabalhei como mecânico na bicicletaria Moto Bike e atualmente sou padeiro na Panificadora Pão e Prosa. Além disso, sou apaixonado por tecnologia e estudo diariamente para expandir meus conhecimentos. Este ano, darei um grande passo na minha jornada ao iniciar minha faculdade de Engenharia de Software. Estou sempre em busca de aprendizado e aprimoramento para, no futuro, atuar na área de tecnologia que tanto me inspira.",
+
+            certificados: "Adicionar texto", // Substitua por um texto personalizado
+            
+            contact: "Adicionar texto", // Substitua por um texto personalizado
+
+            projetos: "Aqui estão os vídeos dos meus projetos. Clique nos botões abaixo para acessá-los:"
+        };
+
+        // Adiciona evento de clique a cada link da navbar
+        navbarLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Evita o comportamento padrão do link
+
+                // Define o texto do quadrado com base no botão clicado
+                const sectionId = link.getAttribute('href').substring(1); // Obtém o ID da seção
+                floatingText.innerHTML = texts[sectionId] || `Você clicou em: ${link.textContent}`;
+
+                // Adiciona botões para "Projetos"
+                if (sectionId === 'projetos') {
+                    const videoLinks = [
+                        { text: "Meu Projeto de IA", url: "https://youtu.be/Ekcc_4yDC20" }
+                    ];
+
+                    videoLinks.forEach(video => {
+                        const button = document.createElement('button');
+                        button.innerHTML = `🎥 ${video.text}`; // Adiciona o ícone e o texto
+                        button.style.display = "block";
+                        button.style.marginTop = "10px";
+                        button.style.padding = "10px 20px";
+                        button.style.backgroundColor = "#007BFF";
+                        button.style.color = "white";
+                        button.style.border = "none";
+                        button.style.borderRadius = "5px";
+                        button.style.cursor = "pointer";
+                        button.style.fontFamily = "'Poppins', sans-serif";
+                        button.style.fontSize = "1rem";
+
+                        // Adiciona evento de clique ao botão para abrir o link
+                        button.addEventListener('click', () => {
+                            window.open(video.url, "_blank"); // Abre o link em uma nova aba
+                        });
+
+                        floatingText.appendChild(button);
+                    });
+                }
+
+                // Adiciona conteúdo para "Contato"
+                if (sectionId === 'contact') {
+                    // Botão do Instagram
+                    const instagramButton = document.createElement('button');
+                    instagramButton.innerHTML = `<i class="fab fa-instagram"></i> Instagram`;
+                    instagramButton.style.display = "block";
+                    instagramButton.style.marginTop = "10px";
+                    instagramButton.style.padding = "10px 20px";
+                    instagramButton.style.backgroundColor = "#E4405F";
+                    instagramButton.style.color = "white";
+                    instagramButton.style.border = "none";
+                    instagramButton.style.borderRadius = "5px";
+                    instagramButton.style.cursor = "pointer";
+                    instagramButton.style.fontFamily = "'Poppins', sans-serif";
+                    instagramButton.style.fontSize = "1rem";
+
+                    // Evento para abrir o link do Instagram
+                    instagramButton.addEventListener('click', () => {
+                        window.open("https://www.instagram.com/gomesgabriel141?utm_source=qr&igsh=MTUzZmlrb2NpbDZlbQ==", "_blank");
+                    });
+
+                    // Texto com o número de telefone
+                    const phoneContainer = document.createElement('div');
+                    phoneContainer.style.marginTop = "10px";
+                    phoneContainer.style.display = "flex";
+                    phoneContainer.style.alignItems = "center";
+                    phoneContainer.style.gap = "10px";
+
+                    const phoneText = document.createElement('p');
+                    phoneText.innerHTML = `<i class="fas fa-phone"></i> 68 999090567`;
+                    phoneText.style.fontFamily = "'Poppins', sans-serif";
+                    phoneText.style.fontSize = "1rem";
+                    phoneText.style.color = "#333";
+
+                    // Botão de copiar
+                    const copyButton = document.createElement('button');
+                    copyButton.textContent = "Copiar";
+                    copyButton.style.padding = "5px 10px";
+                    copyButton.style.backgroundColor = "#007BFF";
+                    copyButton.style.color = "white";
+                    copyButton.style.border = "none";
+                    copyButton.style.borderRadius = "5px";
+                    copyButton.style.cursor = "pointer";
+                    copyButton.style.fontFamily = "'Poppins', sans-serif";
+                    copyButton.style.fontSize = "0.9rem";
+
+                    // Evento para copiar o número de telefone
+                    copyButton.addEventListener('click', () => {
+                        navigator.clipboard.writeText("68 999090567").then(() => {
+                            alert("Número copiado para a área de transferência!");
+                        });
+                    });
+
+                    // Adiciona o texto e o botão ao contêiner
+                    phoneContainer.appendChild(phoneText);
+                    phoneContainer.appendChild(copyButton);
+
+                    // Adiciona os elementos ao quadrado flutuante
+                    floatingText.appendChild(instagramButton);
+                    floatingText.appendChild(phoneContainer);
+                }
+
+                // Exibe o quadrado flutuante
+                floatingBox.classList.remove('hidden');
+                floatingBox.classList.add('visible');
+            });
+        });
+
+        // Esconde o quadrado ao clicar fora dele
+        document.addEventListener('click', (event) => {
+            if (!floatingBox.contains(event.target) && !event.target.closest('.navbar')) {
+                floatingBox.classList.remove('visible');
+                floatingBox.classList.add('hidden');
+                floatingText.innerHTML = ""; // Limpa o conteúdo do quadrado ao fechar
+            }
+        });
+    </script>
+</body>
+</html>
+``` 

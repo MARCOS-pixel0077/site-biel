@@ -1,0 +1,370 @@
+/* Estilo do corpo com fundo de céu */
+body {
+  margin: 0;
+  height: 100vh;
+  min-height: 150vh; /* Garante que o corpo tenha pelo menos 150% da altura da janela */
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #000428, #004e92);
+  overflow: hidden;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Estrelas fixas */
+.stars {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+  opacity: 0.8;
+  z-index: 1; /* Estrelas ficam atrás da imagem */
+}
+
+/* Estrelas cadentes */
+.shooting-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 15px white;
+  animation: shooting 2s ease-in-out infinite;
+  opacity: 0.9;
+  z-index: 1; /* Estrelas cadentes também ficam atrás da imagem */
+}
+
+/* Animação de cintilação */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Animação de estrelas cadentes */
+@keyframes shooting {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-300px, 300px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Animação de estrelas cadentes da esquerda para a direita */
+@keyframes shooting-left {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(300px, 300px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Animação de estrelas cadentes da direita para a esquerda */
+@keyframes shooting-right {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-300px, 300px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Gerar várias estrelas */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Estilo para o h1 */
+h1 {
+  margin: 50px auto 20px; /* Adiciona espaço acima e abaixo */
+  text-align: center;
+  color: white;
+  font-family: 'Poppins', sans-serif; /* Fonte estilosa */
+  font-size: 2.5rem; /* Escala com base no tamanho da tela */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para destacar o texto */
+}
+
+/* Estilo da barra de navegação */
+.navbar {
+  margin: 20px auto; /* Adiciona espaço acima e abaixo */
+  text-align: center;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Permite que os itens quebrem linha em telas menores */
+  gap: 15px;
+  padding: 0;
+  list-style: none; /* Remove os marcadores da lista */
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+/* Estilo para a foto de perfil */
+.profile-picture {
+  position: absolute;
+  top: 10%; /* Alinha verticalmente com o título */
+  left: 5%; /* Mantém a posição horizontal no canto esquerdo */
+  width: 150px; /* Define largura fixa */
+  height: 150px; /* Define altura fixa igual à largura */
+  border-radius: 50%; /* Torna o contêiner perfeitamente circular */
+  overflow: hidden; /* Garante que a imagem fique dentro do contêiner circular */
+  border: 2px solid white; /* Borda branca ao redor da imagem */
+  z-index: 10; /* Garante que a imagem fique acima das estrelas */
+}
+
+.profile-picture img {
+  display: block; /* Remove espaços extras ao redor da imagem */
+  width: 100%; /* A imagem ocupa todo o contêiner */
+  height: 100%; /* A imagem ocupa todo o contêiner */
+  object-fit: cover; /* Ajusta a imagem para preencher o contêiner sem distorção */
+}
+
+/* Estilo global para imagens */
+img {
+  max-width: 100%; /* Garante que a imagem nunca ultrapasse o tamanho do contêiner */
+  max-height: 100vh; /* Limita a altura máxima ao tamanho da tela */
+  object-fit: contain; /* Ajusta a imagem para caber no contêiner */
+}
+
+/* Quadrado flutuante */
+#floating-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8); /* Começa menor para a animação */
+  width: auto; /* Ajusta a largura automaticamente ao conteúdo */
+  max-width: 90%; /* Limita a largura máxima para telas menores */
+  height: auto; /* Ajusta a altura automaticamente ao conteúdo */
+  padding: 20px; /* Adiciona espaço interno */
+  background-color: rgba(0, 0, 0, 0.9); /* Fundo mais escuro */
+  color: white;
+  border-radius: 15px; /* Bordas arredondadas */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Animação de entrada */
+}
+
+#floating-box.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1); /* Cresce suavemente */
+}
+
+#floating-box.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.8); /* Encolhe suavemente */
+}
+
+/* Texto dentro do quadrado flutuante */
+#floating-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Ajusta o tamanho do texto */
+  line-height: 1.5; /* Melhora o espaçamento entre linhas */
+  word-wrap: break-word; /* Quebra o texto longo */
+}
+
+/* Adicione estrelas ao HTML */
+
+/* Estilo para a seção "Sobre" */
+#sobre {
+  padding: 20px;
+  margin: 50px auto; /* Adiciona espaço acima e centraliza horizontalmente */
+  max-width: 800px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: white; /* Texto branco para combinar com o tema escuro */
+  background: rgba(0, 0, 0, 0.8); /* Fundo escuro com transparência */
+  border-radius: 15px; /* Bordas arredondadas */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Sombra para destacar */
+  text-align: justify; /* Alinha o texto para facilitar a leitura */
+  backdrop-filter: blur(5px); /* Adiciona um efeito de desfoque no fundo */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil para destacar */
+}
+
+#sobre p {
+  margin-bottom: 15px;
+}
+
+#sobre p:last-child {
+  margin-bottom: 0; /* Remove a margem inferior do último parágrafo */
+}
+
+/* Estilo para a seção "Ferramentas que uso" */
+#ferramentas {
+  position: absolute;
+  top: 150px; /* Ajusta a posição vertical */
+  right: 20px; /* Ajusta a posição horizontal */
+  width: auto;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+#ferramentas h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #00d4ff; /* Cor azul clara para destacar o título */
+}
+
+.ferramentas-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Espaçamento de 15px entre os ícones */
+}
+
+.ferramentas-icons i {
+  font-size: 2rem; /* Tamanho dos ícones */
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Cores específicas para cada ferramenta */
+.ferramentas-icons .fa-python {
+  color: #3776AB; /* Azul do Python */
+}
+
+.ferramentas-icons .fa-html5 {
+  color: #E34F26; /* Laranja do HTML5 */
+}
+
+.ferramentas-icons .fa-css3-alt {
+  color: #1572B6; /* Azul do CSS3 */
+}
+
+.ferramentas-icons .fa-github {
+  color: #333; /* Preto do GitHub */
+}
+
+.ferramentas-icons .fa-code {
+  color: #007ACC; /* Azul do Visual Studio Code */
+}
+
+.ferramentas-icons .fa-file-excel {
+  color: #217346; /* Verde do Excel */
+}
+
+.ferramentas-icons i:hover {
+  transform: scale(1.2); /* Aumenta o ícone ao passar o mouse */
+  filter: brightness(1.2); /* Torna o ícone mais brilhante */
+}
+
+/* Estilo para o rodapé */
+footer {
+  margin-top: auto; /* Empurra o rodapé para o final */
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  background: rgba(0, 0, 0, 0.8); /* Fundo escuro para combinar com o tema */
+}
+
+/* Estilo para telas maiores (desktops) */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  .navbar ul {
+    gap: 20px;
+  }
+}
+
+/* Estilo para tablets */
+@media (max-width: 1024px) and (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .profile-picture {
+    width: 20%; /* Aumenta a largura da imagem em tablets */
+  }
+}
+
+/* Estilo para celulares */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .navbar ul {
+    flex-direction: column; /* Empilha os itens verticalmente */
+    gap: 10px;
+  }
+
+  .profile-picture {
+    width: 30%; /* Aumenta a largura da imagem em celulares */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%);
+  }
+}
