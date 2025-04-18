@@ -1,14 +1,15 @@
 /* Estilo do corpo com fundo de céu */
 body {
-  margin: 0;
-  height: 100vh;
-  min-height: 150vh; /* Garante que o corpo tenha pelo menos 150% da altura da janela */
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, #000428, #004e92);
-  overflow: hidden;
-  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #000428, #004e92);
+  color: white;
 }
 
 /* Estrelas fixas */
@@ -160,17 +161,16 @@ h1 {
   border-radius: 5px;
 }
 
-/* Estilo para a foto de perfil */
+/* Estilo para a imagem de perfil */
 .profile-picture {
-  position: absolute;
-  top: 10%; /* Alinha verticalmente com o título */
-  left: 5%; /* Mantém a posição horizontal no canto esquerdo */
-  width: 150px; /* Define largura fixa */
-  height: 150px; /* Define altura fixa igual à largura */
+  position: relative; /* Permite que a imagem seja posicionada no fluxo normal */
+  margin: 20px auto; /* Centraliza horizontalmente e adiciona espaço ao redor */
+  width: 120px; /* Define largura fixa */
+  height: 120px; /* Define altura fixa igual à largura */
   border-radius: 50%; /* Torna o contêiner perfeitamente circular */
   overflow: hidden; /* Garante que a imagem fique dentro do contêiner circular */
   border: 2px solid white; /* Borda branca ao redor da imagem */
-  z-index: 10; /* Garante que a imagem fique acima das estrelas */
+  z-index: 10; /* Garante que a imagem fique acima de outros elementos */
 }
 
 .profile-picture img {
@@ -277,8 +277,8 @@ img {
 
 .ferramentas-icons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 15px; /* Espaçamento de 15px entre os ícones */
 }
 
@@ -328,7 +328,7 @@ footer {
   background: rgba(0, 0, 0, 0.8); /* Fundo escuro para combinar com o tema */
 }
 
-/* Estilo para telas maiores (desktops) */
+/* Estilo para telas grandes (desktops) */
 @media (min-width: 1024px) {
   h1 {
     font-size: 3rem;
@@ -336,6 +336,22 @@ footer {
 
   .navbar ul {
     gap: 20px;
+  }
+
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+  }
+
+  #ferramentas {
+    position: absolute;
+    top: 150px;
+    right: 20px;
+  }
+
+  .ferramentas-icons {
+    flex-direction: column;
+    gap: 15px;
   }
 }
 
@@ -345,26 +361,94 @@ footer {
     font-size: 2.5rem;
   }
 
+  .navbar ul {
+    gap: 15px;
+  }
+
   .profile-picture {
-    width: 20%; /* Aumenta a largura da imagem em tablets */
+    width: 120px;
+    height: 120px;
+  }
+
+  #ferramentas {
+    position: static;
+    margin: 20px auto;
+  }
+
+  .ferramentas-icons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
   }
 }
 
 /* Estilo para celulares */
 @media (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
   h1 {
     font-size: 2rem;
     text-align: center;
+    margin: 20px auto;
+  }
+
+  .navbar {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
   }
 
   .navbar ul {
-    flex-direction: column; /* Empilha os itens verticalmente */
+    flex-direction: column;
     gap: 10px;
   }
 
   .profile-picture {
-    width: 30%; /* Aumenta a largura da imagem em celulares */
-    left: 50%; /* Centraliza horizontalmente */
-    transform: translateX(-50%);
+    width: 100px; /* Reduz o tamanho da imagem em telas menores */
+    height: 100px;
+    margin: 10px auto; /* Adiciona menos espaço ao redor */
+  }
+
+  h1 {
+    margin-top: 10px; /* Adiciona espaço entre a imagem e o título */
+  }
+
+  #sobre {
+    margin: 20px auto;
+    padding: 15px;
+    font-size: 0.9rem;
+    width: 90%; /* Ajusta a largura para caber na tela */
+    margin-bottom: 8px; /* Espaço entre o texto e as ferramentas */
+  }
+
+  #ferramentas {
+    margin-top: 8px; /* Espaço de 8px acima */
+    margin-bottom: 20px; /* Espaço no final da página */
+    width: 90%; /* Ajusta a largura para caber na tela */
+    text-align: center; /* Centraliza o conteúdo */
+    position: relative; /* Garante que o item fique no fluxo normal da página */
+  }
+
+  .ferramentas-icons {
+    flex-direction: row; /* Organiza os ícones em linha */
+    flex-wrap: wrap; /* Permite que os ícones quebrem linha */
+    gap: 10px; /* Espaçamento entre os ícones */
+    justify-content: center; /* Centraliza os ícones */
+  }
+
+  h2 {
+    margin-bottom: 10px; /* Espaço entre o título e os ícones */
+    font-size: 1.5rem; /* Ajusta o tamanho do título */
+  }
+
+  #floating-box {
+    width: 90%;
+    padding: 15px;
   }
 }
